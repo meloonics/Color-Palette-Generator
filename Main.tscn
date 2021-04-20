@@ -1,0 +1,402 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://ColorCell.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Slider.gd" type="Script" id=2]
+[ext_resource path="res://ColorPaletteMaker.gd" type="Script" id=3]
+[ext_resource path="res://Gamut.gd" type="Script" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://Gamut.shader" type="Shader" id=6]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 6 )
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPaletteMaker" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 10.0
+margin_right = -20.0
+margin_bottom = -10.0
+custom_constants/separation = 20
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorPaletteMaker"]
+margin_right = 1240.0
+margin_bottom = 430.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorPaletteMaker/HBoxContainer"]
+margin_right = 308.0
+margin_bottom = 430.0
+
+[node name="Label" type="Label" parent="ColorPaletteMaker/HBoxContainer/VBoxContainer"]
+margin_right = 308.0
+margin_bottom = 14.0
+text = "Pick Color A"
+align = 1
+
+[node name="ColorPicker" type="ColorPicker" parent="ColorPaletteMaker/HBoxContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 308.0
+margin_bottom = 430.0
+edit_alpha = false
+presets_enabled = false
+presets_visible = false
+
+[node name="ColorCell" parent="ColorPaletteMaker/HBoxContainer" instance=ExtResource( 1 )]
+margin_right = 463.0
+margin_bottom = 430.0
+
+[node name="ColorCell2" parent="ColorPaletteMaker/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 467.0
+margin_right = 618.0
+margin_bottom = 430.0
+name_tag = "ab"
+
+[node name="ColorCell3" parent="ColorPaletteMaker/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 622.0
+margin_right = 773.0
+margin_bottom = 430.0
+name_tag = "B"
+
+[node name="ColorCell4" parent="ColorPaletteMaker/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 777.0
+margin_right = 929.0
+margin_bottom = 430.0
+name_tag = "bc"
+
+[node name="ColorCell5" parent="ColorPaletteMaker/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 933.0
+margin_right = 1084.0
+margin_bottom = 430.0
+name_tag = "C"
+
+[node name="ColorCell6" parent="ColorPaletteMaker/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 1088.0
+margin_right = 1240.0
+margin_bottom = 430.0
+name_tag = "ca"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ColorPaletteMaker"]
+margin_top = 450.0
+margin_right = 1240.0
+margin_bottom = 700.0
+size_flags_vertical = 3
+custom_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorPaletteMaker/HBoxContainer2"]
+margin_right = 341.0
+margin_bottom = 250.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ColorPaletteMaker/HBoxContainer2/VBoxContainer"]
+margin_right = 341.0
+margin_bottom = 14.0
+text = "Gamut"
+align = 1
+
+[node name="Gamut" type="TextureRect" parent="ColorPaletteMaker/HBoxContainer2/VBoxContainer"]
+material = SubResource( 1 )
+margin_top = 18.0
+margin_right = 341.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 204, 204 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="Control" type="Control" parent="ColorPaletteMaker/HBoxContainer2/VBoxContainer/Gamut"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sliders" type="VBoxContainer" parent="ColorPaletteMaker/HBoxContainer2"]
+margin_left = 361.0
+margin_right = 779.0
+margin_bottom = 250.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorPaletteMaker/HBoxContainer2/Sliders"]
+margin_right = 418.0
+margin_bottom = 16.0
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer"]
+margin_top = 1.0
+margin_right = 180.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 180, 0 )
+text = "C Saturation relative to A: "
+
+[node name="HSlider" type="HSlider" parent="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer"]
+margin_left = 184.0
+margin_right = 384.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 200, 0 )
+max_value = 1.0
+step = 0.01
+value = 0.8
+
+[node name="Label2" type="Label" parent="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer"]
+margin_left = 388.0
+margin_top = 1.0
+margin_right = 418.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 30, 0 )
+text = "0.00"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ColorPaletteMaker/HBoxContainer2/Sliders"]
+margin_top = 20.0
+margin_right = 418.0
+margin_bottom = 36.0
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer2"]
+margin_top = 1.0
+margin_right = 180.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 180, 0 )
+text = "B Saturation relative to C: "
+
+[node name="HSlider" type="HSlider" parent="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer2"]
+margin_left = 184.0
+margin_right = 384.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 200, 0 )
+max_value = 1.0
+step = 0.01
+value = 0.8
+
+[node name="Label2" type="Label" parent="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer2"]
+margin_left = 388.0
+margin_top = 1.0
+margin_right = 418.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 30, 0 )
+text = "0.00"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ColorPaletteMaker/HBoxContainer2/Sliders"]
+margin_top = 40.0
+margin_right = 418.0
+margin_bottom = 56.0
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer4"]
+margin_top = 1.0
+margin_right = 180.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 180, 0 )
+text = "C Hue relative to A: "
+
+[node name="HSlider" type="HSlider" parent="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer4"]
+margin_left = 184.0
+margin_right = 384.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 200, 0 )
+max_value = 1.0
+step = 0.01
+value = 0.4
+
+[node name="Label2" type="Label" parent="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer4"]
+margin_left = 388.0
+margin_top = 1.0
+margin_right = 418.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 30, 0 )
+text = "0.00"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ColorPaletteMaker/HBoxContainer2/Sliders"]
+margin_top = 60.0
+margin_right = 418.0
+margin_bottom = 76.0
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer3"]
+margin_top = 1.0
+margin_right = 180.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 180, 0 )
+text = "B Hue relative to A and C: "
+
+[node name="HSlider" type="HSlider" parent="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer3"]
+margin_left = 184.0
+margin_right = 384.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 200, 0 )
+max_value = 1.0
+step = 0.01
+value = 0.65
+
+[node name="Label2" type="Label" parent="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer3"]
+margin_left = 388.0
+margin_top = 1.0
+margin_right = 418.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 30, 0 )
+text = "0.00"
+
+[node name="HBoxContainer5" type="GridContainer" parent="ColorPaletteMaker/HBoxContainer2/Sliders"]
+margin_top = 80.0
+margin_right = 418.0
+margin_bottom = 132.0
+columns = 2
+
+[node name="CheckBox" type="CheckBox" parent="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer5"]
+margin_right = 174.0
+margin_bottom = 24.0
+hint_tooltip = "Tick this if A has low Saturation or Value for more interesting results!"
+text = "Contrasted B"
+
+[node name="CheckBox2" type="CheckBox" parent="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer5"]
+margin_left = 178.0
+margin_right = 366.0
+margin_bottom = 24.0
+hint_tooltip = "Tick this for weird, but sometimes interesting behavior."
+text = "Contrasted C"
+
+[node name="CheckBox3" type="CheckBox" parent="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer5"]
+margin_top = 28.0
+margin_right = 174.0
+margin_bottom = 52.0
+hint_tooltip = "If false, intermediate Colors are generated through lerping. Usually leads to muddier, 
+washed-out colors."
+pressed = true
+text = "Exact Secondary Colors"
+
+[node name="CheckBox4" type="CheckBox" parent="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer5"]
+margin_left = 178.0
+margin_top = 28.0
+margin_right = 366.0
+margin_bottom = 52.0
+text = "Make B independent of C"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="ColorPaletteMaker/HBoxContainer2/Sliders"]
+margin_top = 136.0
+margin_right = 418.0
+margin_bottom = 250.0
+size_flags_vertical = 3
+custom_constants/separation = 10
+
+[node name="RandomizeColor" type="Button" parent="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer6"]
+margin_right = 116.0
+margin_bottom = 114.0
+rect_min_size = Vector2( 116, 0 )
+hint_tooltip = "Randomizes initial color, but keeps current settings"
+text = "RANDOMIZE A"
+
+[node name="Randomize" type="Button" parent="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer6"]
+margin_left = 126.0
+margin_right = 418.0
+margin_bottom = 114.0
+hint_tooltip = "Randomizes settings, but keeps original color"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "RANDOMIZE SETTINGS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="ColorPaletteMaker/HBoxContainer2"]
+margin_left = 799.0
+margin_right = 1140.0
+margin_bottom = 250.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ColorPaletteMaker/HBoxContainer2/VBoxContainer3"]
+margin_right = 341.0
+margin_bottom = 14.0
+text = "GDScript Output"
+
+[node name="TextEdit" type="TextEdit" parent="ColorPaletteMaker/HBoxContainer2/VBoxContainer3"]
+margin_top = 18.0
+margin_right = 341.0
+margin_bottom = 250.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+readonly = true
+syntax_highlighting = true
+show_line_numbers = true
+wrap_enabled = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ColorPaletteMaker/HBoxContainer2"]
+margin_left = 1160.0
+margin_right = 1240.0
+margin_bottom = 250.0
+custom_constants/separation = 10
+
+[node name="CopyAll" type="Button" parent="ColorPaletteMaker/HBoxContainer2/VBoxContainer2"]
+margin_right = 80.0
+margin_bottom = 150.0
+size_flags_vertical = 3
+text = "Copy Array"
+
+[node name="SavePNG" type="Button" parent="ColorPaletteMaker/HBoxContainer2/VBoxContainer2"]
+margin_top = 160.0
+margin_right = 80.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 0, 40 )
+hint_tooltip = "Save Palette for Asesprite"
+text = "Save PNG"
+
+[node name="SaveTXT" type="Button" parent="ColorPaletteMaker/HBoxContainer2/VBoxContainer2"]
+margin_top = 210.0
+margin_right = 80.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 0, 40 )
+hint_tooltip = "Save palette for Paint.NET"
+text = "Save TXT"
+
+[node name="FileDialog" type="FileDialog" parent="ColorPaletteMaker"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -304.0
+margin_top = -178.0
+margin_right = 304.0
+margin_bottom = 178.0
+window_title = "Save Palette"
+resizable = true
+mode_overrides_title = false
+access = 2
+show_hidden_files = true
+current_dir = "/Users/49152/Documents/Godot/ColorPalette"
+current_path = "/Users/49152/Documents/Godot/ColorPalette/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="color_changed" from="ColorPaletteMaker/HBoxContainer/VBoxContainer/ColorPicker" to="ColorPaletteMaker" method="_on_ColorPicker_color_changed"]
+[connection signal="value_changed" from="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer/HSlider" to="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer/HSlider" to="ColorPaletteMaker" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer2/HSlider" to="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer2" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer2/HSlider" to="ColorPaletteMaker" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer4/HSlider" to="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer4" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer4/HSlider" to="ColorPaletteMaker" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer3/HSlider" to="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer3" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer3/HSlider" to="ColorPaletteMaker" method="_on_HSlider_value_changed"]
+[connection signal="toggled" from="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer5/CheckBox" to="ColorPaletteMaker" method="_on_CheckBox_toggled"]
+[connection signal="toggled" from="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer5/CheckBox2" to="ColorPaletteMaker" method="_on_CheckBox2_toggled"]
+[connection signal="toggled" from="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer5/CheckBox3" to="ColorPaletteMaker" method="_on_CheckBox3_toggled"]
+[connection signal="toggled" from="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer5/CheckBox4" to="ColorPaletteMaker" method="_on_CheckBox4_toggled"]
+[connection signal="pressed" from="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer6/RandomizeColor" to="ColorPaletteMaker" method="_on_RandomizeColor_pressed"]
+[connection signal="pressed" from="ColorPaletteMaker/HBoxContainer2/Sliders/HBoxContainer6/Randomize" to="ColorPaletteMaker" method="_on_Randomize_pressed"]
+[connection signal="pressed" from="ColorPaletteMaker/HBoxContainer2/VBoxContainer2/CopyAll" to="ColorPaletteMaker" method="_on_CopyAll_pressed"]
+[connection signal="pressed" from="ColorPaletteMaker/HBoxContainer2/VBoxContainer2/SavePNG" to="ColorPaletteMaker" method="_on_SavePNG_pressed"]
+[connection signal="pressed" from="ColorPaletteMaker/HBoxContainer2/VBoxContainer2/SaveTXT" to="ColorPaletteMaker" method="_on_SaveTXT_pressed"]
+[connection signal="file_selected" from="ColorPaletteMaker/FileDialog" to="ColorPaletteMaker" method="_on_FileDialog_file_selected"]

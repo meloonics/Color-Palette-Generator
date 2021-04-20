@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ColorCell.gd" type="Script" id=1]
+
+[node name="ColorCell" type="VBoxContainer"]
+margin_left = 312.0
+margin_right = 427.0
+margin_bottom = 456.0
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 115.0
+margin_bottom = 14.0
+text = "A"
+align = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_top = 18.0
+margin_right = 115.0
+margin_bottom = 404.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_top = 408.0
+margin_right = 115.0
+margin_bottom = 432.0
+size_flags_horizontal = 3
+editable = false
+
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 436.0
+margin_right = 115.0
+margin_bottom = 456.0
+
+[node name="Hex" type="Button" parent="VBoxContainer"]
+margin_right = 39.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "RGB"
+
+[node name="Copy" type="Button" parent="VBoxContainer"]
+margin_left = 43.0
+margin_right = 115.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Copy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="toggled" from="VBoxContainer/Hex" to="." method="_on_Hex_toggled"]
+[connection signal="pressed" from="VBoxContainer/Copy" to="." method="_on_Copy_pressed"]
